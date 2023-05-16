@@ -1,0 +1,40 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MyFirstAspNetApp.Models;
+using MyFirstAspNetApp.Services;
+using MyFirstAspNetApp.ViewModels.Home;
+using System.Diagnostics;
+
+namespace MyFirstAspNetApp.Controllers
+{
+	public class HomeController : Controller
+	{
+		private readonly IConfiguration configuration;
+
+		public HomeController(IConfiguration configuration)
+		{
+			this.configuration = configuration;
+		}
+
+		public IActionResult Index()
+		{
+			var model = new IndexViewModel
+			{
+				Year = DateTime.UtcNow.Year,
+				Message = this.configuration["YouTube:ApiKey"],
+				Names = new string[] {"Pesho", "Ivan"}
+			};
+			return View(model);
+		}
+
+		public IActionResult Privacy()
+		{
+			return View();
+		}
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+	}
+}
