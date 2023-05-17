@@ -11,6 +11,7 @@ namespace MyFirstAspNetApp
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
 			builder.Services.AddTransient<IStringManipulation, StringManipulation>();
+			builder.Services.AddTransient<IYearsService, YearsService>();
 
 			var app = builder.Build();
 
