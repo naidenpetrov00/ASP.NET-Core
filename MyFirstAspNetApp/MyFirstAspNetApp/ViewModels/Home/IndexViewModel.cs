@@ -4,6 +4,8 @@
 	{
 		public string Message { get; set; }
 
+		public string UserName { get; set; }
+
 		public int Year { get; set; }
 
 		public IEnumerable<string> Names { get; set; }

@@ -3,18 +3,14 @@
 	using Microsoft.AspNetCore.Mvc.TagHelpers;
 	using Microsoft.AspNetCore.Razor.TagHelpers;
 
-	[HtmlTargetElement("h1", Attributes = "greeting-string")]
-	[HtmlTargetElement("h2")]
-	[HtmlTargetElement("h3")]
-	[HtmlTargetElement("h4")]
+	[HtmlTargetElement("h2", Attributes = "greeting-string")]
 	public class GreetingHeaderTagHelper : TagHelper
 	{
 		public string GreetingString { get; set; }
 
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
-			output.Attributes.Add("name", "Naiden");
-			base.Process(context, output);
+			output.Content.SetContent(GreetingString);
 		}
 	}
 }

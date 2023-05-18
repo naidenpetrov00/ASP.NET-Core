@@ -20,6 +20,7 @@ namespace MyFirstAspNetApp.Controllers
 			var model = new IndexViewModel
 			{
 				Year = DateTime.UtcNow.Year,
+				UserName = "Naiden",
 				Message = this.configuration["YouTube:ApiKey"],
 				Names = new string[] {"Pesho", "Ivan"}
 			};

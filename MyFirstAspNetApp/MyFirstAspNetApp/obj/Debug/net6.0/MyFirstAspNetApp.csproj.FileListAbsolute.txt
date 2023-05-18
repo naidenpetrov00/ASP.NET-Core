@@ -32,3 +32,4 @@ C:\Naiden\Softuni\ASP.NET-Core\MyFirstAspNetApp\MyFirstAspNetApp\obj\Debug\net6.
 C:\Naiden\Softuni\ASP.NET-Core\MyFirstAspNetApp\MyFirstAspNetApp\obj\Debug\net6.0\ref\MyFirstAspNetApp.dll
 C:\Naiden\Softuni\ASP.NET-Core\MyFirstAspNetApp\MyFirstAspNetApp\bin\Debug\net6.0\Views\Home\_CurrentYearPartial.cshtml
 C:\Naiden\Softuni\ASP.NET-Core\MyFirstAspNetApp\MyFirstAspNetApp\bin\Debug\net6.0\Views\Shared\Components\NavBar\Default.cshtml
+C:\Naiden\Softuni\ASP.NET-Core\MyFirstAspNetApp\MyFirstAspNetApp\bin\Debug\net6.0\Views\Shared\Components\Weather\Default.cshtml

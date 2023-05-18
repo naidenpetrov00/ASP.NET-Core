@@ -4,7 +4,6 @@
 	using MyFirstAspNetApp.Services;
 	using MyFirstAspNetApp.ViewModels.NavBar;
 
-	[ViewComponent(Name = "NavBar")]
 	public class NavBarViewComponent : ViewComponent
 	{
 		private readonly IYearsService yearsService;
