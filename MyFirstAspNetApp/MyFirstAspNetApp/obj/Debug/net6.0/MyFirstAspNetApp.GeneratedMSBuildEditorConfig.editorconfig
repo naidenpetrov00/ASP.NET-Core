@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Naiden\Softuni\ASP.NET-Core\MyFirstAspNetApp\MyFirstAspNetApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Naiden/Softuni/ASP.NET-Core/MyFirstAspNetApp/MyFirstAspNetApp/Views/Home/HttpError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIdHRwRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Naiden/Softuni/ASP.NET-Core/MyFirstAspNetApp/MyFirstAspNetApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

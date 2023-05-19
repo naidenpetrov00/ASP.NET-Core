@@ -1,4 +1,6 @@
-﻿@model IndexViewModel
+﻿@using MyFirstAspNetApp.Services;
+@inject ICountInstancesService CountInstances
+@model IndexViewModel
 @{
 	ViewData["Title"] = "Home Page";
 }
@@ -8,4 +10,5 @@
 	<h2 greeting-string="@Model.UserName"></h2>
 	<h2>@Model.Message</h2>
 	<p>@Model.Year</p>
-</div>
+</div> 
+<h1>@CountInstances.Instances</h1>	

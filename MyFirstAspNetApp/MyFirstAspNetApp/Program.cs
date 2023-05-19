@@ -1,7 +1,7 @@
-using MyFirstAspNetApp.Services;
-
 namespace MyFirstAspNetApp
 {
+	using MyFirstAspNetApp.Services;
+
 	public class Program
 	{
 		public static void Main(string[] args)
@@ -12,6 +12,7 @@ namespace MyFirstAspNetApp
 			builder.Services.AddControllersWithViews();
 			builder.Services.AddTransient<IStringManipulation, StringManipulation>();
 			builder.Services.AddTransient<IYearsService, YearsService>();
+			builder.Services.AddTransient<ICountInstancesService, CountInstancesService>();
 
 			var app = builder.Build();
 
@@ -22,6 +23,8 @@ namespace MyFirstAspNetApp
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
+
+			app.UseStatusCodePagesWithRedirects("/Home/HttpError?statusCode={0}");
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
