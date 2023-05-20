@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MyFirstAspNetApp.Filters;
 using MyFirstAspNetApp.Models;
 using MyFirstAspNetApp.Services;
 using MyFirstAspNetApp.ViewModels.Home;
@@ -28,11 +29,12 @@ namespace MyFirstAspNetApp.Controllers
 				Year = DateTime.UtcNow.Year,
 				UserName = "Naiden",
 				Message = this.configuration["YouTube:ApiKey"],
-				Names = new string[] { "Pesho", "Ivan" }
+				Names = new string[] { "Pesho", "Ivan" }	
 			};
 			return View(model);
 		}
 
+		[AddHeaderActionFIlterAttribute]
 		public IActionResult Privacy()
 		{
 			return View();

@@ -1,5 +1,6 @@
 namespace MyFirstAspNetApp
 {
+	using MyFirstAspNetApp.Filters;
 	using MyFirstAspNetApp.Services;
 
 	public class Program
