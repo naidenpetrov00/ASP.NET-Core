@@ -14,6 +14,7 @@ namespace MyFirstAspNetApp
 			builder.Services.AddTransient<IStringManipulation, StringManipulation>();
 			builder.Services.AddTransient<IYearsService, YearsService>();
 			builder.Services.AddTransient<ICountInstancesService, CountInstancesService>();
+			builder.Services.AddTransient<AddHeaderActionFilterAttribute>();
 
 			var app = builder.Build();
 

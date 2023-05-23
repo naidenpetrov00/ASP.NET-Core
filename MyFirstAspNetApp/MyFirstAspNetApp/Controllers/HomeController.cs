@@ -35,7 +35,7 @@ namespace MyFirstAspNetApp.Controllers
 			return View(model);
 		}
 
-		[TypeFilter(typeof(AddHeaderActionFilterAttribute))]
+		[ServiceFilter(typeof(AddHeaderActionFilterAttribute))]
 		[MyAuthorizationFilter]
 		[MyExceptionFilter]
 		[MyResourceFilter]
