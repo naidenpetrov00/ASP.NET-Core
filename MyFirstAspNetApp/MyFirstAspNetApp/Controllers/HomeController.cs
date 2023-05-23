@@ -5,6 +5,7 @@ using MyFirstAspNetApp.Models;
 using MyFirstAspNetApp.Services;
 using MyFirstAspNetApp.ViewModels.Home;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace MyFirstAspNetApp.Controllers
 {
@@ -29,12 +30,16 @@ namespace MyFirstAspNetApp.Controllers
 				Year = DateTime.UtcNow.Year,
 				UserName = "Naiden",
 				Message = this.configuration["YouTube:ApiKey"],
-				Names = new string[] { "Pesho", "Ivan" }	
+				Names = new string[] { "Pesho", "Ivan" }
 			};
 			return View(model);
 		}
 
-		[AddHeaderActionFIlterAttribute]
+		[TypeFilter(typeof(AddHeaderActionFilterAttribute))]
+		[MyAuthorizationFilter]
+		[MyExceptionFilter]
+		[MyResourceFilter]
+		[MyResultFilter]
 		public IActionResult Privacy()
 		{
 			return View();

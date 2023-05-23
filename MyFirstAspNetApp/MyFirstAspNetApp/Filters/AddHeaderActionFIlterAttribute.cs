@@ -1,17 +1,24 @@
 ﻿namespace MyFirstAspNetApp.Filters
 {
 	using Microsoft.AspNetCore.Mvc.Filters;
+	using MyFirstAspNetApp.Services;
 
-	public class AddHeaderActionFIlterAttribute : Attribute, IActionFilter
+	public class AddHeaderActionFilterAttribute : ActionFilterAttribute
 	{
-		public void OnActionExecuted(ActionExecutedContext context)
+		private readonly IYearsService yearsService;
+
+		public AddHeaderActionFilterAttribute(IYearsService yearsService)
 		{
-			throw new NotImplementedException();
+			this.yearsService = yearsService;
 		}
 
 		public void OnActionExecuting(ActionExecutingContext context)
 		{
-			throw new NotImplementedException();
+			context.HttpContext.Response.Headers.Add("X-Years", string.Join(",", this.yearsService.GetLastYears(5)).ToString());
+		}
+
+		public void OnActionExecuted(ActionExecutedContext context)
+		{
 		}
 	}
 }
