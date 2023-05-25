@@ -1,6 +1,7 @@
 namespace MyFirstAspNetApp
 {
 	using MyFirstAspNetApp.Filters;
+	using MyFirstAspNetApp.ModelBinders;
 	using MyFirstAspNetApp.Services;
 
 	public class Program
@@ -10,7 +11,10 @@ namespace MyFirstAspNetApp
 			var builder = WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
-			builder.Services.AddControllersWithViews();
+			builder.Services.AddControllersWithViews(configure =>
+			{
+				configure.ModelBinderProviders.Insert(0, new YearModelBinderProvider());
+			});
 			builder.Services.AddTransient<IStringManipulation, StringManipulation>();
 			builder.Services.AddTransient<IYearsService, YearsService>();
 			builder.Services.AddTransient<ICountInstancesService, CountInstancesService>();
