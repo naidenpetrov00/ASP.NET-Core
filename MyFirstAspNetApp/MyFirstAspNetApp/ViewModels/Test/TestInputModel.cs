@@ -7,9 +7,11 @@ namespace MyFirstAspNetApp.ViewModels.Test
 		public int Id { get; set; }
 
 		[Required]
+		[Display(Name = "First name")]
 		public string FirstName { get; set; }
 
 		[Required]
+		[Display(Name = "Last name")]
 		public string LastName { get; set; }
 
 		[Required]
@@ -25,8 +27,10 @@ namespace MyFirstAspNetApp.ViewModels.Test
 		[MinLength(3)]
 		public string University { get; set; }
 
-		public int Year { get; set; }
+		[Display(Name = "Date of birth")]
+		public DateTime DateOfBirth{ get; set; }
 
-		public int[]? Years { get; set; }
-	}
+		[Display(Name = "Years of experience")]
+        public int YearsOfExperience { get; set; }
+    }
 }

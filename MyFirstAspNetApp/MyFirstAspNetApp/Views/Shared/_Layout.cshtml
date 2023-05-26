@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="~/MyFirstAspNetApp.styles.css" asp-append-version="true" />
 </head>
 <body>
-	<header>
+	<header class="modal-header">
 		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
 			<div class="container-fluid">
 				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyFirstAspNetApp</a>
@@ -31,10 +31,9 @@
 		</main>
 	</div>
 
-	<footer class="border-top footer text-muted">
-
-		<vc:weather></vc:weather>
+	<footer class="modal-footer">
 		<div class="container">
+			<vc:weather></vc:weather>
 			&copy; 2023 - MyFirstAspNetApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 		</div>
 	</footer>

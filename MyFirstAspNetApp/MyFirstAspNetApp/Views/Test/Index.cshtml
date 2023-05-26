@@ -1,5 +1,31 @@
-﻿<h1>Candidate for junior software devloper</h1>
+﻿@using MyFirstAspNetApp.ViewModels.Test;
+@model TestInputModel
 
-<form asp-controller="Test" asp-action="Index" class="form" method="post">
-	 
-</form>
+<h1>Candidate for junior software devloper</h1>
+
+<div class="col-md-4">
+	<form asp-controller="Test" asp-action="Index" class="form" method="post">
+		<label asp-for="FirstName"></label>
+		<input asp-for="FirstName" class="form-control" />
+
+		<label asp-for="LastName"></label>
+		<input asp-for="LastName" class="form-control" />
+
+		<label asp-for="Email"></label>
+		<input asp-for="Email" class="form-control" />
+
+		<label asp-for="University"></label>
+		<input asp-for="University" class="form-control" />
+
+		<label asp-for="Egn"></label>
+		<input asp-for="Egn" class="form-control" />
+
+		<label asp-for="DateOfBirth"></label>
+		<input asp-for="DateOfBirth" class="form-control" />
+
+		<label asp-for="YearsOfExperience"></label>
+		<input asp-for="YearsOfExperience" class="form-control" />
+		<hr />
+		<input type="submit" value="Candidate" class="btn btn-primary"/>
+	</form>
+</div>
