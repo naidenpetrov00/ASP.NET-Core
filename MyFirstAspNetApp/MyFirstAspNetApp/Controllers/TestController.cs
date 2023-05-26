@@ -15,7 +15,7 @@
 		{
 			if (!this.ModelState.IsValid)
 			{
-				return this.Json(ModelState);
+				return this.View(input);
 			}
 
 			return this.View(input);

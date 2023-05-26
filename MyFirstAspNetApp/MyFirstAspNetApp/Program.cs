@@ -1,5 +1,6 @@
 namespace MyFirstAspNetApp
 {
+	using Microsoft.AspNetCore.DataProtection.Repositories;
 	using MyFirstAspNetApp.Filters;
 	using MyFirstAspNetApp.ModelBinders;
 	using MyFirstAspNetApp.Services;
@@ -18,6 +19,7 @@ namespace MyFirstAspNetApp
 			builder.Services.AddTransient<IStringManipulation, StringManipulation>();
 			builder.Services.AddTransient<IYearsService, YearsService>();
 			builder.Services.AddTransient<ICountInstancesService, CountInstancesService>();
+			builder.Services.AddTransient<IPositionsService, PositionsService>();
 			builder.Services.AddTransient<AddHeaderActionFilterAttribute>();
 
 			var app = builder.Build();

@@ -1,31 +1,59 @@
-﻿@using MyFirstAspNetApp.ViewModels.Test;
+﻿@using MyFirstAspNetApp.Data.Enums;
+@using MyFirstAspNetApp.ViewModels.Test;
 @model TestInputModel
 
 <h1>Candidate for junior software devloper</h1>
 
-<div class="col-md-4">
-	<form asp-controller="Test" asp-action="Index" class="form" method="post">
+<form asp-controller="Test" asp-action="Index" class="form" method="post">
+	<div class="form-group">
 		<label asp-for="FirstName"></label>
 		<input asp-for="FirstName" class="form-control" />
+		<span asp-validation-for="FirstName" class="text-danger"></span>
+	</div>
 
+	<div class="form-group">
 		<label asp-for="LastName"></label>
 		<input asp-for="LastName" class="form-control" />
+		<span asp-validation-for="LastName" class="text-danger"></span>
+	</div>
 
+	<div class="form-group">
 		<label asp-for="Email"></label>
 		<input asp-for="Email" class="form-control" />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
 
+	<div class="form-group">
 		<label asp-for="University"></label>
 		<input asp-for="University" class="form-control" />
+		<span asp-validation-for="University" class="text-danger"></span>
+	</div>
 
+	<div class="form-group">
 		<label asp-for="Egn"></label>
 		<input asp-for="Egn" class="form-control" />
+		<span asp-validation-for="Egn" class="text-danger"></span>
+	</div>
 
+	<div class="form-group">
 		<label asp-for="DateOfBirth"></label>
 		<input asp-for="DateOfBirth" class="form-control" />
+		<span asp-validation-for="DateOfBirth" class="text-danger"></span>
+	</div>
 
+	<div class="form-group">
 		<label asp-for="YearsOfExperience"></label>
 		<input asp-for="YearsOfExperience" class="form-control" />
-		<hr />
-		<input type="submit" value="Candidate" class="btn btn-primary"/>
-	</form>
-</div>
+		<span asp-validation-for="YearsOfExperience" class="text-danger"></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="CandidateType"></label>
+		<select asp-for="CandidateType" class="form-control" asp-items="@Html.GetEnumSelectList<CandidateType>()">
+		</select>
+		<span asp-validation-for="CandidateType" class="text-danger"></span>
+	</div>
+
+	<hr />
+	<input type="submit" value="Candidate" class="btn btn-primary" />
+</form> 

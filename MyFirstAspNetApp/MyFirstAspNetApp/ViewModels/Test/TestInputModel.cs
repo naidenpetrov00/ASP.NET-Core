@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MyFirstAspNetApp.ViewModels.Test
+﻿namespace MyFirstAspNetApp.ViewModels.Test
 {
+	using MyFirstAspNetApp.Data.Enums;
+	using System.ComponentModel.DataAnnotations;
+
 	public class TestInputModel
 	{
 		public int Id { get; set; }
@@ -19,8 +20,8 @@ namespace MyFirstAspNetApp.ViewModels.Test
 		public string Email { get; set; }
 
 		[Required]
-		[RegularExpression("[0-9]{10}")]
-		[StringLength(10, MinimumLength =10)]
+		[RegularExpression("[0-9]{10}",ErrorMessage ="Невалидно ЕГН")]
+		[StringLength(10, MinimumLength = 10)]
 		public string Egn { get; set; }
 
 		[Required]
@@ -28,9 +29,13 @@ namespace MyFirstAspNetApp.ViewModels.Test
 		public string University { get; set; }
 
 		[Display(Name = "Date of birth")]
-		public DateTime DateOfBirth{ get; set; }
+		[DataType(DataType.Date)]
+		public DateTime DateOfBirth { get; set; }
 
+		[Range(2, int.MaxValue)]
 		[Display(Name = "Years of experience")]
-        public int YearsOfExperience { get; set; }
+		public int YearsOfExperience { get; set; }
+
+        public int CandidateType { get; set; }
     }
 }
