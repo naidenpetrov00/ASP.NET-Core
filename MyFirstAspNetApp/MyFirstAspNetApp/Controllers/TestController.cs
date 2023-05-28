@@ -1,13 +1,25 @@
 ﻿namespace MyFirstAspNetApp.Controllers
 {
 	using Microsoft.AspNetCore.Mvc;
+	using MyFirstAspNetApp.Services;
 	using MyFirstAspNetApp.ViewModels.Test;
 
 	public class TestController : Controller
 	{
+		private readonly IPositionsService positionsService;
+
+		public TestController(IPositionsService positionsService)
+		{
+			this.positionsService = positionsService;
+		}
+
 		public IActionResult Index()
 		{
-			return this.View();
+			var model = new TestInputModel
+			{
+				AllTypes = this.positionsService.GetAll(),
+			};
+			return this.View(model);
 		}
 
 		[HttpPost]

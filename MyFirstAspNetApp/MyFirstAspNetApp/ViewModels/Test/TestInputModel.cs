@@ -1,5 +1,6 @@
 ﻿namespace MyFirstAspNetApp.ViewModels.Test
 {
+	using Microsoft.AspNetCore.Mvc.Rendering;
 	using MyFirstAspNetApp.Data.Enums;
 	using System.ComponentModel.DataAnnotations;
 
@@ -20,7 +21,7 @@
 		public string Email { get; set; }
 
 		[Required]
-		[RegularExpression("[0-9]{10}",ErrorMessage ="Невалидно ЕГН")]
+		[RegularExpression("[0-9]{10}", ErrorMessage = "Невалидно ЕГН")]
 		[StringLength(10, MinimumLength = 10)]
 		public string Egn { get; set; }
 
@@ -36,6 +37,8 @@
 		[Display(Name = "Years of experience")]
 		public int YearsOfExperience { get; set; }
 
-        public int CandidateType { get; set; }
-    }
+		public int CandidateType { get; set; }
+
+		public IEnumerable<SelectListItem> AllTypes { get; set; }
+	}
 }
