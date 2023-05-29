@@ -44,5 +44,12 @@
 			}
 			return this.Redirect("/");
 		}
+
+		public IActionResult Download()
+		{
+			return this.PhysicalFile(@"C:\Naiden\Softuni\ASP.NET-Core\MyFirstAspNetApp\MyFirstAspNetApp\wwwroot\content\user.pdf",
+									"application/pdf",
+									"Test.pdf");
+		}
 	}
 }
