@@ -11,6 +11,12 @@ namespace MyFirstAspNetApp
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
+			builder.Host.ConfigureLogging(logging =>
+			{
+				logging.ClearProviders();
+				logging.AddConsole();
+			});
+
 			// Add services to the container.
 			builder.Services.AddControllersWithViews(configure =>
 			{

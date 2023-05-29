@@ -4,7 +4,7 @@
 
 <h1>Candidate for junior software devloper</h1>
 
-<form asp-controller="Test" asp-action="Index" class="form" method="post">
+<form asp-controller="Test" asp-action="Index" class="form" method="post" enctype="multipart/form-data">
 	<div class="form-group">
 		<label asp-for="FirstName"></label>
 		<input asp-for="FirstName" class="form-control" />
@@ -54,6 +54,16 @@
 		<span asp-validation-for="CandidateType" class="text-danger"></span>
 	</div>
 
+	<div class="form-group">
+		<label asp-for="CV"></label>
+		<input asp-for="CV" class="form-control" />
+		<span asp-validation-for="CV" class="text-danger"></span>
+	</div>
+
 	<hr />
 	<input type="submit" value="Candidate" class="btn btn-primary" />
-</form> 
+</form>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+		}

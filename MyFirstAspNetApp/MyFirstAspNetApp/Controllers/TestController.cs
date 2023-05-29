@@ -18,19 +18,31 @@
 			var model = new TestInputModel
 			{
 				AllTypes = this.positionsService.GetAll(),
+				FirstName = "Naiden",
+				LastName = "Petkov",
+				University = "Softuni",
+				Egn = "0052319061",
+				Email = "op@abv.bg",
+				DateOfBirth = new DateTime(2000, 1, 1),
+				YearsOfExperience = 2
 			};
 			return this.View(model);
 		}
 
 		[HttpPost]
-		public IActionResult Index(TestInputModel input)
+		public async Task<IActionResult> Index(TestInputModel input)
 		{
 			if (!this.ModelState.IsValid)
 			{
+				input.AllTypes = this.positionsService.GetAll();
 				return this.View(input);
 			}
 
-			return this.View(input);
+			using (var fileStream = new FileStream(@"C:\Naiden\Softuni\ASP.NET-Core\MyFirstAspNetApp\MyFirstAspNetApp\wwwroot\content\user.pdf", FileMode.Create))
+			{
+				await input.CV.CopyToAsync(fileStream);
+			}
+			return this.Redirect("/");
 		}
 	}
 }

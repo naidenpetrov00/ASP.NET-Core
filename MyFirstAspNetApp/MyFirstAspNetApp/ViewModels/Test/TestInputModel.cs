@@ -2,9 +2,10 @@
 {
 	using Microsoft.AspNetCore.Mvc.Rendering;
 	using MyFirstAspNetApp.Data.Enums;
+	using MyFirstAspNetApp.ValidationAttributes;
 	using System.ComponentModel.DataAnnotations;
 
-	public class TestInputModel
+	public class TestInputModel : IValidatableObject
 	{
 		public int Id { get; set; }
 
@@ -21,8 +22,7 @@
 		public string Email { get; set; }
 
 		[Required]
-		[RegularExpression("[0-9]{10}", ErrorMessage = "Невалидно ЕГН")]
-		[StringLength(10, MinimumLength = 10)]
+		[EgnValidation]
 		public string Egn { get; set; }
 
 		[Required]
@@ -39,6 +39,16 @@
 
 		public int CandidateType { get; set; }
 
-		public IEnumerable<SelectListItem> AllTypes { get; set; }
+		public IFormFile CV { get; set; }
+
+		public IEnumerable<SelectListItem>? AllTypes { get; set; }
+
+		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+		{
+			if (int.Parse(this.Egn.Substring(0, 2)) != this.DateOfBirth.Year % 100)
+			{
+				yield return new ValidationResult("Годината на раждане и ЕГН-то не са валидна комбинация");
+			}
+		}
 	}
 }
