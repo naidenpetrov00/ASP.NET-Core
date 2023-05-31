@@ -1,4 +1,5 @@
 using ConsultationDemo.Data;
+using ConsultationDemo.SeedData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,11 +17,27 @@ namespace ConsultationDemo
 				options.UseSqlServer(connectionString));
 			builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-			builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+			builder.Services.AddDefaultIdentity<IdentityUser>()
+				.AddRoles<IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContext>();
 			builder.Services.AddControllersWithViews();
 
 			var app = builder.Build();
+
+			using (var scopedService = app.Services.CreateScope())
+			{
+				var dbContext = scopedService.ServiceProvider.GetService<ApplicationDbContext>();
+
+				if (app.Environment.IsDevelopment())
+				{
+					dbContext.Database.Migrate();
+				}
+
+				new ApplicationDbSeeder(scopedService.ServiceProvider, dbContext)
+					.SeedDataAsync()
+					.GetAwaiter()
+					.GetResult();
+			}
 
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
@@ -42,6 +59,10 @@ namespace ConsultationDemo
 			app.UseAuthentication();
 			app.UseAuthorization();
 
+
+			app.MapControllerRoute(
+				name: "areaRoute",
+				pattern: "{area:exists}/{controller}/{action}");
 			app.MapControllerRoute(
 				name: "default",
 				pattern: "{controller=Home}/{action=Index}/{id?}");
