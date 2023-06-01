@@ -16,6 +16,7 @@
 		{
 			this.userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
 			this.roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+			this.dbContext = dbContext;
 		}
 
 		public async Task SeedDataAsync()
@@ -27,7 +28,7 @@
 
 		private async Task SeedUserToRolesAsyncAsync()
 		{
-			var user = await this.userManager.FindByNameAsync("Ivan");
+			var user = await this.userManager.FindByNameAsync("NaidenAdmin123");
 			var role = await this.roleManager.FindByNameAsync("Admin");
 
 			var exists = dbContext.UserRoles.Any(x => x.UserId == user.Id && x.RoleId == role.Id);
@@ -61,17 +62,17 @@
 
 		private async Task SeedUsersAsync()
 		{
-			var user = await this.userManager.FindByNameAsync("Ivan");
+			var user = await this.userManager.FindByNameAsync("NaidenAdmin123");
 
 			if (user != null)
 			{
 				return;
 			}
 
-			await this.userManager.CreateAsync(new IdentityUser
+			var result=await this.userManager.CreateAsync(new IdentityUser
 			{
-				UserName = "Ivan",
-				Email = "ivan@abv.bg",
+				UserName = "NaidenAdmin123",
+				Email = "NaidenAdmin123@abv.bg",
 				EmailConfirmed = true,
 			}, "ultraSecurePassword");
 		}

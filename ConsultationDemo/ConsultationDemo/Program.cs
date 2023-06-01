@@ -17,7 +17,15 @@ namespace ConsultationDemo
 				options.UseSqlServer(connectionString));
 			builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-			builder.Services.AddDefaultIdentity<IdentityUser>()
+			builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+			{
+				options.Password.RequireDigit = false;
+				options.Password.RequireLowercase = false;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireUppercase = false;
+				options.Password.RequiredUniqueChars = 0;
+				options.Password.RequiredLength = 3;
+			})
 				.AddRoles<IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContext>();
 			builder.Services.AddControllersWithViews();
@@ -61,8 +69,8 @@ namespace ConsultationDemo
 
 
 			app.MapControllerRoute(
-				name: "areaRoute",
-				pattern: "{area:exists}/{controller}/{action}");
+				name: "area",
+				pattern: "{area:exists}/{controller=Payments}/{action=Index}/{id?}");
 			app.MapControllerRoute(
 				name: "default",
 				pattern: "{controller=Home}/{action=Index}/{id?}");
