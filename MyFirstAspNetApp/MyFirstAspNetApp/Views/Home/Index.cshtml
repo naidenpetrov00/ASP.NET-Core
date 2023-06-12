@@ -5,10 +5,18 @@
 	ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-	<h1 class="display-4">Welcome</h1>
-	<h2 greeting-string="@Model.UserName"></h2>
-	<h2>@Model.Message</h2>
-	<p>@Model.Year</p>
-</div> 
-<h1>@CountInstances.Instances</h1>	
+<button class="btn btn-lg btn-primary" onclick="hello()">Click me</button>
+<div id="placeholderElement"></div>
+
+<script>
+	function hello() {
+		const xhr = new XMLHttpRequest;
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("placeholderElement").innerHTML = this.responseText;
+			}
+		}
+		xhr.open("GET", "/Test/Index", true)
+		xhr.send();
+	}
+</script>
