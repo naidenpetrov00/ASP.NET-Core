@@ -398,7 +398,7 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Custom ignores
-**/wwwroot/lib/
+**/wwwroot/
 appsettings.json
 appsettings.Production.json
 appsettings.Development.json
