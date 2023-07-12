@@ -3,6 +3,7 @@ namespace MyFirstAspNetApp
 	using MyFirstAspNetApp.Filters;
 	using MyFirstAspNetApp.Services;
 	using MyFirstAspNetApp.ModelBinders;
+	using Microsoft.Extensions.DependencyInjection;
 
 	public class Program
 	{
@@ -21,6 +22,9 @@ namespace MyFirstAspNetApp
 			{
 				configure.ModelBinderProviders.Insert(0, new YearModelBinderProvider());
 			});
+
+			builder.Services.AddMemoryCache();
+
 			builder.Services.AddTransient<IStringManipulation, StringManipulation>();
 			builder.Services.AddTransient<IYearsService, YearsService>();
 			builder.Services.AddTransient<ICountInstancesService, CountInstancesService>();

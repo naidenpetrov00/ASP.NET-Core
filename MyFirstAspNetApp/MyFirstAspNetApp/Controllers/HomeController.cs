@@ -1,25 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using MyFirstAspNetApp.Filters;
-using MyFirstAspNetApp.Models;
-using MyFirstAspNetApp.Services;
-using MyFirstAspNetApp.ViewModels.Home;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-
-namespace MyFirstAspNetApp.Controllers
+﻿namespace MyFirstAspNetApp.Controllers
 {
+	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.Extensions.Caching.Memory;
+	using Microsoft.Extensions.Logging;
+	using MyFirstAspNetApp.Filters;
+	using MyFirstAspNetApp.Models;
+	using MyFirstAspNetApp.Services;
+	using MyFirstAspNetApp.ViewModels.Home;
+	using System.Diagnostics;
+
 	public class HomeController : Controller
 	{
 		private readonly IConfiguration configuration;
 		private readonly ICountInstancesService countInstancesService;
 		private readonly ILogger<HomeController> logger;
+		private readonly IMemoryCache memoryCache;
 
-		public HomeController(IConfiguration configuration, ICountInstancesService countInstancesService, ILogger<HomeController> logger)
+		public HomeController(
+			IConfiguration configuration,
+			ICountInstancesService countInstancesService,
+			ILogger<HomeController> logger,
+			IMemoryCache memoryCache)
 		{
 			this.configuration = configuration;
 			this.countInstancesService = countInstancesService;
 			this.logger = logger;
+			this.memoryCache = memoryCache;
 		}
 
 		public IActionResult Index()
@@ -43,6 +49,18 @@ namespace MyFirstAspNetApp.Controllers
 		public IActionResult Privacy()
 		{
 			return View();
+		}
+
+		public IActionResult CacheTest()
+		{
+			if (!this.memoryCache.TryGetValue<DateTime>("TimeNow", out var value))
+			{
+				Thread.Sleep(2000);
+				value = DateTime.UtcNow;
+				this.memoryCache.Set("TimeNow", value, TimeSpan.FromSeconds(10));
+			}
+
+			return this.Ok(value);
 		}
 
 		public IActionResult HttpError(int statusCode)
